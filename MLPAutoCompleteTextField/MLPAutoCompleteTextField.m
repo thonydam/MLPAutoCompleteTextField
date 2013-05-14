@@ -152,6 +152,12 @@ static NSString *BackgroundColorKeyPath = @"backgroundColor";
     [self setAutoCompleteFontSize:13];
     [self setMaximumNumberOfAutoCompleteRows:3];
     
+    //Bold effect is crashing on iOS5
+    if (([[[UIDevice currentDevice] systemVersion] compare:@"6.0" options:NSNumericSearch] == NSOrderedAscending))
+    {
+        [self setApplyBoldEffectToAutoCompleteSuggestions:NO];
+    }
+    
     UIFont *regularFont = [UIFont systemFontOfSize:13];
     [self setAutoCompleteRegularFontName:regularFont.fontName];
     
@@ -471,12 +477,34 @@ withAutoCompleteString:(NSString *)string
 + (CGRect)autoCompleteTableViewFrameForTextField:(MLPAutoCompleteTextField *)textField
 {
     CGRect frame = textField.frame;
+    
+    if ([self customAutoCompleteLayout:textField])
+    {
+        frame.size.width = textField.autoCompleteTableWidth;
+        frame.origin.x = textField.autoCompleteTableVerticalPosition;
+    }
+    
     frame.origin.y += textField.frame.size.height;
     frame.origin.x += textField.autoCompleteTableOriginOffset.width;
     frame.origin.y += textField.autoCompleteTableOriginOffset.height;
     frame = CGRectInset(frame, 1, 0);
     
     return frame;
+}
+
++ (BOOL) customAutoCompleteLayout:(MLPAutoCompleteTextField *)textField {
+    
+    CGRect frame = textField.frame;
+    
+    if(textField.autoCompleteTableWidth
+       && textField.autoCompleteTableVerticalPosition
+       && frame.size.width < 300
+       && textField.autoCompleteTableWidth > 0
+       && textField.autoCompleteTableVerticalPosition > 0)
+        return YES;
+    
+    return NO;
+    
 }
 
 - (void)closeAutoCompleteTableView

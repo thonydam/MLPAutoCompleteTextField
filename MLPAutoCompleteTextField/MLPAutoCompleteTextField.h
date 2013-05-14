@@ -49,11 +49,15 @@
 @property (assign) CGFloat autoCompleteTableBorderWidth;
 @property (strong) UIColor *autoCompleteTableBackgroundColor;
 @property (strong) UIColor *autoCompleteTableCellTextColor;
+@property (assign) CGFloat autoCompleteTableWidth;
+@property (assign) CGFloat autoCompleteTableVerticalPosition;
 
 
 - (void)registerAutoCompleteCellNib:(UINib *)nib forCellReuseIdentifier:(NSString *)reuseIdentifier;
 
 - (void)registerAutoCompleteCellClass:(Class)cellClass forCellReuseIdentifier:(NSString *)reuseIdentifier;
+
+- (void)fetchAutoCompleteSuggestions;
 
 @end
 
