@@ -442,7 +442,7 @@ withAutoCompleteString:(NSString *)string
         [self.superview bringSubviewToFront:self];
         [self.superview insertSubview:self.autoCompleteTableView
                          belowSubview:self];
-        self.autoCompleteTableViewIsDisplayed = NO;
+        self.autoCompleteTableViewIsDisplayed = YES;
         [self.autoCompleteTableView setUserInteractionEnabled:YES];
         if(self.showTextFieldDropShadowWhenAutoCompleteTableIsOpen){
             [self.layer setShadowColor:[[UIColor blackColor] CGColor]];
