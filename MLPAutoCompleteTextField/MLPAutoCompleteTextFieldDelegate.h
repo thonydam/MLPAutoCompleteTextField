@@ -35,4 +35,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 - (void)autoCompleteTextField:(MLPAutoCompleteTextField *)textField
 willShowAutoCompleteTableView:(UITableView *)autoCompleteTableView;
 
+- (void)autoCompleteTextField:(MLPAutoCompleteTextField *)textField
+willCloseAutoCompleteTableView:(UITableView *)autoCompleteTableView;
+
 @end

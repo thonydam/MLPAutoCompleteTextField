@@ -442,6 +442,7 @@ withAutoCompleteString:(NSString *)string
         [self.superview bringSubviewToFront:self];
         [self.superview insertSubview:self.autoCompleteTableView
                          belowSubview:self];
+        self.autoCompleteTableViewIsDisplayed = NO;
         [self.autoCompleteTableView setUserInteractionEnabled:YES];
         if(self.showTextFieldDropShadowWhenAutoCompleteTableIsOpen){
             [self.layer setShadowColor:[[UIColor blackColor] CGColor]];
@@ -507,10 +508,18 @@ withAutoCompleteString:(NSString *)string
     
 }
 
-- (void)closeAutoCompleteTableView
-{
+- (void)closeAutoCompleteTableView {
+    
+    if([self.autoCompleteDelegate
+        respondsToSelector:@selector(autoCompleteTextField:willCloseAutoCompleteTableView:)]){
+        [self.autoCompleteDelegate autoCompleteTextField:self
+                          willCloseAutoCompleteTableView:self.autoCompleteTableView];
+    }
+    
     [self.autoCompleteTableView removeFromSuperview];
     [self restoreOriginalShadowProperties];
+    
+    self.autoCompleteTableViewIsDisplayed = NO;
 }
 
 #pragma mark - Aesthetic

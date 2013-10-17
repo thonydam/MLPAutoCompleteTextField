@@ -34,6 +34,7 @@
 @property (assign) BOOL showAutoCompleteTableWhenEditingBegins;
 
 @property (assign) BOOL autoCompleteTableViewHidden;
+@property (assign) BOOL autoCompleteTableViewIsDisplayed;
 
 @property (assign) CGFloat autoCompleteFontSize;
 @property (strong) NSString *autoCompleteBoldFontName;
@@ -58,6 +59,9 @@
 - (void)registerAutoCompleteCellClass:(Class)cellClass forCellReuseIdentifier:(NSString *)reuseIdentifier;
 
 - (void)fetchAutoCompleteSuggestions;
+
+- (void)closeAutoCompleteTableView;
+
 
 @end
 
