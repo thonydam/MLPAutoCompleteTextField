@@ -53,6 +53,11 @@
 @property (assign) CGFloat autoCompleteTableWidth;
 @property (assign) CGFloat autoCompleteTableVerticalPosition;
 
+/**
+ * The amount to inset the text by, or zero to use default behavior
+ */
+@property (nonatomic,assign) UIEdgeInsets textInsets;
+
 
 - (void)registerAutoCompleteCellNib:(UINib *)nib forCellReuseIdentifier:(NSString *)reuseIdentifier;
 
